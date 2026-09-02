@@ -348,8 +348,7 @@ document.getElementById("csv").addEventListener("click", () => {
   const lines = [cols.join(",")];
   for (const j of jobs.filter(inFilter)) lines.push(cols.map(k => '"' + String(j[k] ?? "").replaceAll('"','""') + '"').join(","));
   const a = document.createElement("a");
-  a.href = URL.createObjectURL(new Blob([lines.join("
-")], { type: "text/csv" }));
+  a.href = URL.createObjectURL(new Blob([lines.join(String.fromCharCode(10))], { type: "text/csv" }));
   a.download = "job-tracker.csv";
   a.click();
 });
